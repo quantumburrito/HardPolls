@@ -1,4 +1,4 @@
-import {getToggleState, setToggleState} from "./src/toggleSwitch"
+import {getToggleState, setToggleState} from "./toggleSwitch"
 
 async function initializePopup(): Promise<void> {
     const toggleSwitch = document.getElementById("toggleSwitch") as HTMLInputElement;
@@ -15,3 +15,8 @@ async function initializePopup(): Promise<void> {
         chrome.runtime.sendMessage({action: "toggle"});
     })
 }
+
+// Initialize popu once DOM is fully loaded
+document.addEventListener("DOMContentLoaded",() => {
+    initializePopup().catch(console.error);
+})

@@ -2,6 +2,12 @@
 
 import { replaceTextContent } from './textReplacer';
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.action === "toggle") {
+        processPageContent();
+    }
+})
+
 
 // Function to recursively process all text nodes in the DOM
 export function processPageContent() {
@@ -33,5 +39,3 @@ export function processPageContent() {
     });
     observer.observe(document.body, { childList: true, subtree: true });
 }
-
-processPageContent();

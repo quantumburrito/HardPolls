@@ -1,11 +1,14 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'production', // Use 'development' if you want unminified output for debugging
-  entry: './src/content.ts', // Your main file
+  mode: 'production',
+  entry: {
+    content: './src/content.ts',
+    popup: './src/popup.ts'  // Add popup.ts as a new entry
+  },
   output: {
-    filename: 'content.js', // Output file name
-    path: path.resolve(__dirname, 'dist'), // Output directory
+    filename: '[name].js', // This will output both content.js and popup.js
+    path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
     extensions: ['.ts', '.js'],
