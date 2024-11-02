@@ -4,17 +4,18 @@ import { replaceTextContent } from './textReplacer';
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "toggle") {
+        if message.
         processPageContent();
     }
 })
 
 
 // Function to recursively process all text nodes in the DOM
-export function processPageContent() {
+export function processPageContent(state: boolean) {
     // Helper function to process each text node
     const processTextNode = (node: Node) => {
         if (node.nodeType === Node.TEXT_NODE && node.textContent) {
-            node.textContent = replaceTextContent(node.textContent);
+            node.textContent = replaceTextContent(node.textContent, state);
         }
     };
 
