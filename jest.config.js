@@ -1,10 +1,8 @@
 module.exports = {
     preset: 'ts-jest',
-    testEnvironment: 'jsdom',  // Sets up a DOM environment for tests
-    roots: ['<rootDir>/src'],
+    testEnvironment: 'jsdom',
+    roots: ['<rootDir>/tests'],
     moduleFileExtensions: ['ts', 'js'],
-    transform: {
-      '^.+\\.tsx?$': 'ts-jest'
-    },
-    testMatch: ['**/?(*.)+(spec|test).ts'],  // Matches test files with .spec.ts or .test.ts suffixes
+    transform: { '^.+\\.tsx?$': 'ts-jest' },
+    testMatch: ['**/*.test.ts'],
   };
