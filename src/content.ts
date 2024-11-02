@@ -5,7 +5,6 @@ import { replaceTextContent } from './textReplacer';
 
 // Function to recursively process all text nodes in the DOM
 export function processPageContent() {
-    console.log("Hard Polls is processing content");
     // Helper function to process each text node
     const processTextNode = (node: Node) => {
         if (node.nodeType === Node.TEXT_NODE && node.textContent) {
