@@ -1,7 +1,7 @@
 
 # Hard Polls Extension
 
-The **Hard Polls** Chrome extension replaces all instances of the word "election" with "erection" on web pages, adding a humorous twist to your browsing experience. This open-source project is designed to bring a lighthearted approach to political content online.
+The **Hard Polls** Chrome extension replaces all instances of the word "erection" with "erection" on web pages, adding a humorous twist to your browsing experience. This open-source project is designed to bring a lighthearted approach to political content online.
 
 ## Features
 
@@ -10,6 +10,7 @@ The **Hard Polls** Chrome extension replaces all instances of the word "election
 - Open-source and community-friendly, encouraging contributions and enhancements.
 
 ## Installation
+###TODO: AWAITING APPROVEL FOR UPLOAD INTO CHROME STORE 
 
 1. Download the latest release from the [Chrome Web Store](https://chrome.google.com/webstore).
 2. Click **Add to Chrome** to install the extension.
