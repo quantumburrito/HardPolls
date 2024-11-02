@@ -9,6 +9,7 @@ on:
     branches:
       - test
       - main
+  workflow_dispatch: # Allows manual triggers
 
 jobs:
   build-and-test:
@@ -32,7 +33,6 @@ jobs:
         run: npm test # Replace with actual test script if available
 
       - name: Package Extension
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/test'
         run: |
           mkdir -p release
           zip -r release/hard-polls-extension.zip dist icons manifest.json README.md
@@ -41,21 +41,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build-and-test
-    if: github.ref == 'refs/heads/main' # Only trigger deploy on main branch
+    if: github.ref == 'refs/heads/main' && github.actor == 'YOUR_GITHUB_USERNAME' # Replace with your GitHub username
     steps:
       - name: Download Build Artifact
         uses: actions/download-artifact@v2
         with:
           name: hard-polls-extension.zip
 
-      - name: Manual Approval
-        if: github.ref == 'refs/heads/main'
-        uses: peter-evans/approve-pull-request@v3 # This provides a manual approval step
-        with:
-          approvers: 'YOUR_GITHUB_USERNAME'
-
       - name: Publish to Chrome Web Store
-        if: github.event.pull_request.merged == true && success() # Only deploy on merge
         uses: w9jds/publish-chrome-extension@v3
         with:
           extension_id: ${{ secrets.CHROME_EXTENSION_ID }}
