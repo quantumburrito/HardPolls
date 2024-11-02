@@ -23,6 +23,12 @@ jobs:
         with:
           node-version: '16'
 
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install Dependencies
         run: npm install
 
@@ -36,6 +42,7 @@ jobs:
         run: |
           mkdir -p release
           zip -r release/hard-polls-extension.zip dist icons manifest.json README.md
+          echo "Package created successfully."
         # Add any additional files necessary for your extension package
 
   deploy:
@@ -56,3 +63,6 @@ jobs:
           client_secret: ${{ secrets.CHROME_CLIENT_SECRET }}
           refresh_token: ${{ secrets.CHROME_REFRESH_TOKEN }}
           zip: ./release/hard-polls-extension.zip
+
+      - name: Notify Deployment Success
+        run: echo "Deployment to Chrome Web Store completed successfully."
