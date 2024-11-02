@@ -13,15 +13,26 @@ describe('Text Replacement', () => {
         expect(actualOutput).toBe(expectedOutput);
     })
     test('ensure string without instance of "election" is modified', () => {
-        //Arrange
-        const testStirng: string = "Let's win this race";
+        // Arrange
+        const testString: string = "Let's win this race";
         const expectedOutput: string = "Let's win this race";
 
         // Act
-        const actualOutput: string = replaceTextContent(testStirng);
+        const actualOutput: string = replaceTextContent(testString);
 
         // Assert
         expect(actualOutput).toBe(expectedOutput);
+    })
+    test('ensure a string with multiple instances of "election" are modified as expected', () => {
+        //Arrange
+        const testString: string = "Win Elections by Elections"
+        const expectedOutput: string = "Win Erections by Erections"
+
+        // Act
+        const actualOutput: string = replaceTextContent(testString)
+
+        // Assert
+        expect(actualOutput).toBe(expectedOutput)
     })
 
 })
