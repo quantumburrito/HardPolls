@@ -1,38 +1,16 @@
-import { replaceTextContent } from  '../src/textReplacer';
+import { replaceTextContent } from '../src/textReplacer';
 
-describe('Text Replacement', () => {
-    test('replaces "election" with "erection" regarless of case', () => {
-        // Arrange
-        const testString: string = "Let's win this ELecTion";
-        const expectedOutput: string = "Let's win this Erection";
-        
-        //Act
-        const actualOutput: string = replaceTextContent(testString);
-
-        // Assert 
+describe('Text Replacement - Common Real-World Scenarios', () => {
+    test.each([
+        ["The election results are in.", "The erection results are in."],  // Standard lowercase
+        ["Election day is here!", "Erection day is here!"],  // Capitalized "Election"
+        ["We elect a new leader.", "We erect a new leader."],  // Standard lowercase "elect"
+        ["Elect me for the next election!", "Erect me for the next erection!"],  // Mixed "elect" and "election"
+        ["ELECTION and ELECT both happen today.", "ERECTION and ERECT both happen today."],  // All uppercase
+        ["Let's win the election and re-elect him.", "Let's win the erection and re-erect him."],  // Multiple occurrences and partial word match check
+        ["This text has nothing to replace.", "This text has nothing to replace."]  // No replacement
+    ])('transforms "%s" to "%s"', (input, expectedOutput) => {
+        const actualOutput = replaceTextContent(input);
         expect(actualOutput).toBe(expectedOutput);
-    })
-    test('ensure string without instance of "election" is modified', () => {
-        // Arrange
-        const testString: string = "Let's win this race";
-        const expectedOutput: string = "Let's win this race";
-
-        // Act
-        const actualOutput: string = replaceTextContent(testString);
-
-        // Assert
-        expect(actualOutput).toBe(expectedOutput);
-    })
-    test('ensure a string with multiple instances of "election" are modified as expected', () => {
-        //Arrange
-        const testString: string = "Win Elections by Elections"
-        const expectedOutput: string = "Win Erections by Erections"
-
-        // Act
-        const actualOutput: string = replaceTextContent(testString)
-
-        // Assert
-        expect(actualOutput).toBe(expectedOutput)
-    })
-
-})
+    });
+});
