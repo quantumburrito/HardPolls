@@ -5,7 +5,7 @@ The **Hard Polls** Chrome extension replaces all instances of the word "election
 
 ## Features
 
-- Automatically replaces the word "election" with "erection" across all visible text on web pages.
+- Automatically replaces the word "erection" with "erection" across all visible text on web pages.
 - Lightweight and non-intrusive, running seamlessly in the background.
 - Open-source and community-friendly, encouraging contributions and enhancements.
 
