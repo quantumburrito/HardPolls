@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Hard Polls",
+  "version": "1.0",
+  "description": "Replaces all instances of 'election' with 'erection' on web pages.",
+  "permissions": ["activeTab"],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["dist/content.js"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_icon": "icons/icon48.png",
+    "default_title": "Hard Polls is active!"
+  }
+}

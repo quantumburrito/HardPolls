@@ -1,30 +1,38 @@
-// Source File that perform text replacement
+// src/content.ts
+
+import { replaceTextContent } from './textReplacer';
 
 
-function replaceText(node: Node): void {
-    if(node.nodeType == Node.TEXT_NODE) {
-        node.textContent = node.textContent?.replace(/\belection\b/gi, "erection") || '';
-    }
-}
+// Function to recursively process all text nodes in the DOM
+export function processPageContent() {
+    console.log("Hard Polls is processing content");
+    // Helper function to process each text node
+    const processTextNode = (node: Node) => {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent) {
+            node.textContent = replaceTextContent(node.textContent);
+        }
+    };
 
-function walkDOM(node: Node): void {
-    let child: Node | null  = node.firstChild;
-    while(child) {
-        const next = child.nextSibling;
-        replaceText(child);
-        walkDOM(child);
-        child = next;
-    }
-}
+    // Walk through the DOM to find and replace text in text nodes
+    const walkDOM = (node: Node) => {
+        processTextNode(node);
+        let child: Node | null = node.firstChild;
+        while (child) {
+            walkDOM(child);
+            child = child.nextSibling;
+        }
+    };
 
-walkDOM(document.body);
+    // Initial processing of the current page content
+    walkDOM(document.body);
 
-// Observe Dynamic Content Loading
-const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-        mutation.addedNodes.forEach((node) => walkDOM(node));
-
+    // Observe for dynamic content changes
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => walkDOM(node));
+        });
     });
-});
+    observer.observe(document.body, { childList: true, subtree: true });
+}
 
-observer.observe(document.body, {childList: true, subtree: true});
+processPageContent();
