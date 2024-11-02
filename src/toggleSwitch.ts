@@ -8,3 +8,7 @@ export async function getToggleState(): Promise<boolean> {
     return state;
 }
 
+export async function setToggleState(state: boolean):Promise <void> {
+    await chrome.storage.local.set({"ToggleSwitch": state});
+}
+
