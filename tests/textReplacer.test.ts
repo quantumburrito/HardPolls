@@ -12,4 +12,16 @@ describe('Text Replacement', () => {
         // Assert 
         expect(actualOutput).toBe(expectedOutput);
     })
+    test('ensure string without instance of "election" is modified', () => {
+        //Arrange
+        const testStirng: string = "Let's win this race";
+        const expectedOutput: string = "Let's win this race";
+
+        // Act
+        const actualOutput: string = replaceTextContent(testStirng);
+
+        // Assert
+        expect(actualOutput).toBe(expectedOutput);
+    })
+
 })
